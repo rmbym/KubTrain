@@ -1,0 +1,22 @@
+echo " An empty cluster must exists. If not, create one with :minikube start";
+echo " 1 - Create a deployment";
+kubectl create -f site-deployment.yaml;
+echo "  Get deployments";
+kubectl get deployment;
+echo "  Get deployments infos";
+kubectl describe deploy ethereal-deployment;
+echo "  To see ip of the pod";
+kubectl get pods -o wide;
+echo " 2 - Scale replicas of deployment 3 => 4";
+kubectl scale deployment ethereal-deployment --replicas=4;
+echo " 3 - Create service";
+kubectl create -f site-service.yaml;
+echo " 4 - Create kibana & elastic search";
+kubectl create -f ./elk/elastic.yaml;
+kubectl create -f ./elk/kibana.yaml;
+echo "  To access webApp outside the cluester run: minikube service ethereal-service ";
+echo "  To access kibana outside the cluester run: minikube service kibana ";
+echo "  Check that services have been created";
+kubectl get svc;
+minikube dashboard;
+
