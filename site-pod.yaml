@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    type: webapp
+  name: etherealsite
+spec:
+  containers:
+    - image: ${{ secrets.myImageRepo }} #or your image from docker hub
+      name: etheral
